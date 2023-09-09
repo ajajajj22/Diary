@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .signup-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .signup-form {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>회원가입</h2>
+        <form class="signup-form" id="signupForm">
+            <div>
+                <label for="username">사용자 이름:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div>
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <button type="submit">가입하기</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // 입력된 사용자 이름과 비밀번호 가져오기
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // 간단한 확인 메시지 생성
+            var message = "가입 완료! 사용자 이름: " + username;
+
+            // 메시지를 페이지에 표시
+            document.getElementById("message").textContent = message;
+        });
+    </script>
+</body>
+</html>
