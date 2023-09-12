@@ -28,7 +28,7 @@ app.post('/signup', async (req, res) => {
     const user = new UserModel({ username, password });
     await user.save();
 
-    res.status(201).json({ message: '가입 완료!' });
+    res.status(201).json({ message: '가입 완료' });
   } catch (error) {
     res.status(500).json({ message: '가입 실패' });
   }
