@@ -1,0 +1,10 @@
+package com.example.Diary.controller;
+
+@Controller
+public class MemberController {
+    // 회원가입 페이지 출력 요청
+    @GetMapping("/Diary/join")
+    public String joinForm() {
+        return "join";
+    }
+}
