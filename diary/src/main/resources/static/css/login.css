@@ -1,0 +1,61 @@
+body {
+    background-color: #CC6F57;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 300px;
+    /* 너비 조정 */
+    padding: 30px;
+    /* 패딩 조정 */
+    border: 2px solid #333;
+    /* 테두리 스타일과 색상 조정 */
+    border-radius: 10px;
+    /* 둥근 모서리 추가 */
+    background-color: #ffffff;
+    /* 흰색 배경색상 추가 */
+}
+
+.login-form {
+    text-align: left;
+}
+
+/* 로그인 입력 칸 스타일 */
+.login-form label,
+.login-form input {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* 로그인 버튼와 회원가입 버튼 공통 스타일 */
+.login-button,
+.signup-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+/* 로그인 버튼 스타일 */
+.login-button {
+    margin-bottom: 10px;
+}
+
+/* 회원가입 버튼 스타일 */
+.signup-button {
+    text-align: center;
+}
