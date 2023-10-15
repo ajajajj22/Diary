@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DiaryApplication<diary>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.dakkoo.diary.DiaryApplication",
+            "projectName": "diary",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
