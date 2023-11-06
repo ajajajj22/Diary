@@ -1,0 +1,147 @@
+
+/*버튼 css*/
+.buttons-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    
+}
+
+.buttons-container button {
+    margin-right: 10px;
+}
+/*캘린더 css*/
+
+.Calendar {
+    text-align: center;
+    position: relative;
+    margin: 0 auto; /* 가로 중앙 정렬 */
+    left: 20px; /* 원하는 위치로 조절 */
+    top:20px;
+    
+}
+
+.Calendar>thead>tr:first-child>td {
+    font-family: 'Questrial', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.Calendar>thead>tr:last-child>td {
+    font-family: 'Questrial', sans-serif;
+    font-weight: 600;     
+}
+
+.Calendar>tbody>tr>td>p {
+    font-family: 'Montserrat', sans-serif;
+    height: 100px;
+    width: 100px;
+    border-radius: 45px;
+    transition-duration: .2s;
+    line-height: 45px;
+    margin: 2.5px;
+    display: block;
+    text-align: center;
+}        
+
+.pastDay {
+    
+}
+
+.today {
+    background-color: #F5D042;            
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.futureDay {
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+.futureDay:hover{
+    background:#eee;
+}
+
+.futureDay.choiceDay,
+.today.choiceDay {
+    background: #0A174E;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+/*캘린더 날짜 선택 시*/
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+/* 이모지 선택 창 스타일 */
+.emoji-picker {
+    display: none;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.emoji {
+    
+    cursor: pointer;
+    font-size: 24px;
+    margin: 10px;
+}
+/* 선택된 날짜 아래에 이모지 스타일 지정 */
+.choiceDay {
+    position: relative;
+}
+
+.choiceDay .emoji {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 42%; /* 가운데 정렬 */
+    transform: translateX(-50%); /* 가운데 정렬 */
+    font-size: 24px;
+}
+.emoji:hover {
+    transform: scale(1.2);
+}
+.close:hover {
+    color: black;
+    cursor: pointer;
+}
+
+
+
+
+
+
