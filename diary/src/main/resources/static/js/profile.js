@@ -1,5 +1,5 @@
  // 프로필 이미지 변경 기능 (이전 코드와 동일)
- document.getElementById("changeProfileButton").addEventListener("click", function () {
+document.getElementById("changeProfileButton").addEventListener("click", function () {
     document.getElementById("profileImageInput").click();
 });
 

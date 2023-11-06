@@ -1,4 +1,4 @@
-package com.example.Diary.controller;
+package com.dakoo.diary.controller;
 
 import org.springframework.stereotype.Controller;
 
@@ -7,6 +7,6 @@ public class HomeController {
     // 기본페이지 요청 메서드
     @GetMapping("/")
     public String index(){
-        return "index"; 
+        return "index.html"; 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.Diary.controller;
+package com.dakoo.diary.controller;
 
 import org.springframework.stereotype.Controller;
 
@@ -7,6 +7,6 @@ import org.springframework.stereotype.Controller;
 public class BoardController{
     @GetMapping("/login")
     public String saveForm(){
-        return "login";
+        return "login.html";
     }
 }
