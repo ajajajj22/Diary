@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./static/css/layout.css" />
     <link rel="stylesheet" href="./static/css/font.css" />
     <link rel="stylesheet" href="./static/css/home.css" />
+    <link rel="stylesheet" href="static/css/calendar.css">
   </head>
   <body>
     <div class="bookcover">
@@ -32,12 +33,77 @@
             <div class="header content-title">
               <div class="content-title-name">다이어리</div>
             </div>
+            <div class="buttons-container">
+              <!-- 내 닉네임 -->
+              <button id="nickname">내 닉네임</button>
+              <!-- 메인으로 -->
+              <button id="go-to-main">메인으로</button>
+              <!-- 로그아웃 -->
+              <button id="log-out" onClick="location.href='login.html'">로그아웃</button>
+          </div>
+          <div id="myModal" class="modal">
+              <div class="modal-content">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <p>무엇을 하시겠습니까?</p>
+                  <button id="diaryButton" onclick="performAction('diary')">일기 쓰기</button> 
+                  <button id="addStickerButton" onclick="toggleStickerAndWeatherButtons()">스티커 붙이기</button>
+                  <button id="emojiButton" style="display: none;" onclick="showEmojiPicker()">표정 설정하기</button>
+                  <button id="weatherButton" style="display: none;" onclick="showWeatherEmoji()">날씨 표시하기</button>         
+              </div>
+          </div>
+          <!-- 이모지 선택 창 -->
+          <div id="emojiPicker" class="emoji-picker">
+              <div>
+                  <span class="emoji" onclick="selectEmoji('😃')">😃</span>
+                  <span class="emoji" onclick="selectEmoji('😊')">😊</span>
+                  <span class="emoji" onclick="selectEmoji('😂')">😂</span>
+                  <span class="emoji" onclick="selectEmoji('😒')">😒</span>
+                  <span class="emoji" onclick="selectEmoji('😑')">😑</span>
+                  <span class="emoji" onclick="selectEmoji('👍')">👍</span>
+                  <span class="emoji" onclick="selectEmoji('🤣')">🤣</span>
+                  <span class="emoji" onclick="selectEmoji('😴')">😴</span>
+                  <span class="emoji" onclick="selectEmoji('❤️')">❤️</span>
+                  <span class="emoji" onclick="selectEmoji('😁')">😁</span>
+                  <span class="emoji" onclick="selectEmoji('😃')">😃</span>
+                  <span class="emoji" onclick="selectEmoji('😅')">😅</span>
+                  <span class="emoji" onclick="selectEmoji('😉')">😉</span>
+                  <span class="emoji" onclick="selectEmoji('😋')">😋</span>
+                  <span class="emoji" onclick="selectEmoji('😎')">😎</span>
+                  <span class="emoji" onclick="selectEmoji('😍')">😍</span>
+                  <!-- 다른 이모지 추가 -->
+              </div>
+          </div>
             <div class="box content-box">
-              캘린더 들어갈 곳
+              <table class="Calendar">
+                <thead>
+                    <tr>
+                        <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+                        <td colspan="5">
+                            <span id="calYear"></span>년
+                            <span id="calMonth"></span>월
+                        </td>
+                        <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+                    </tr>
+                    <tr>
+                        <td>일</td>
+                        <td>월</td>
+                        <td>화</td>
+                        <td>수</td>
+                        <td>목</td>
+                        <td>금</td>
+                        <td>토</td>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                </tbody>
+            </table>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="static/js/calendar.js"></script>
+    <script src="static/js/profile.js"></script>
   </body>
 </html>
