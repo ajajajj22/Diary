@@ -18,8 +18,8 @@ body {
     background-color: #b4d1da;
     border-radius: 9px;
     border: 1px solid #738186;
-    width: 1200px;
-    height: 700px;
+    width: 1400px;
+    height: 780px;
     margin: 100px auto;
     position: relative;
   }
@@ -48,7 +48,7 @@ body {
   }
   
   .profile-container {
-    flex: 0.4;
+    flex: 0.35;
     margin-right: 1.5rem;
   
     display: flex;
@@ -110,7 +110,9 @@ body {
   
   .profile-image {
     flex: none;
-  }
+    border: 2px solid #738186; /* 얇은 테두리 색상 및 두께 설정 */
+}
+
   
   .profile-image-img {
     width: 100%;
@@ -119,7 +121,7 @@ body {
   
   .profile-text {
     margin-top: 1.5rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
     line-height: 1.7;
     flex: 1;
     font-size: 12x;
@@ -127,6 +129,7 @@ body {
   
   .profile-username {
     flex: 0;
+    font-size: 1.2rem;
   }
 
   .content-box{
