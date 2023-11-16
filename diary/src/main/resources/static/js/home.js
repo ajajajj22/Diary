@@ -12,4 +12,5 @@ document.getElementById("go-to-main").addEventListener("click", function() {
 document.getElementById("log-in").addEventListener("click", function() {
     window.location.href = "../../login.html"; // 파일 경로 또는 원하는 URL로 변경
 //이동 안됨 수정해야함
-});s
+});
+
