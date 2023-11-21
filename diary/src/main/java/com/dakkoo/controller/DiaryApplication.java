@@ -1,4 +1,4 @@
-package com.dakkoo.diary;
+package com.dakkoo.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
