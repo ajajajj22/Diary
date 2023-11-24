@@ -1,4 +1,4 @@
-package com.dakkoo.controller;
+package com.dakkoo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

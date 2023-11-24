@@ -1,12 +1,14 @@
-package com.dakoo.diary.controller;
+package com.dakkoo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/diary")
+@RequestMapping("/dairy")
 public class BoardController{
     @GetMapping("/dakko/login")
     public String saveForm(){
-        return "login.html";
+        return "login";
     }
 }
