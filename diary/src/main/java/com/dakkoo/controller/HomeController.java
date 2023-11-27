@@ -1,4 +1,4 @@
-package com.dakoo.diary.controller;
+package com.dakkoo.diary.controller;
 
 import org.springframework.stereotype.Controller;
 
