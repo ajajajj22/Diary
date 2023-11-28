@@ -47,6 +47,7 @@ function buildCalendar() {
         // 날짜에 따라 클래스 설정 (지난 날, 오늘, 미래)
         if (nowDay < today) {
             newDIV.className = "pastDay";
+            newDIV.onclick = function () { choiceDate(this); }
         }
         else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) {
             newDIV.className = "today";
@@ -70,6 +71,16 @@ function buildCalendar() {
         // 데이터 속성 설정 부분 추가
         nowColumn.setAttribute('data-year', nowDay.getFullYear());
         nowColumn.setAttribute('data-month', nowDay.getMonth());
+        // 날짜에 스토어된 이모지가 있으면 클래스 추가
+        const storedEmoji = loadSticker(nowDay);
+        const storedWeatherEmoji =loadWeatherEmoji(nowDay)
+        if (storedEmoji) {
+            newDIV.classList.add("storedEmoji");
+            
+        }
+        if(storedWeatherEmoji){
+            newDIV.classList.add("storedEmoji");
+        }
     }
 }
 // 이전달 버튼 클릭
@@ -99,6 +110,7 @@ function choiceDate(newDIV) {
     // 모달 다이얼로그 열기
     const modal = document.getElementById("myModal");
     modal.style.display = "block";
+    setInitialButtonState();
 }
 
 
@@ -109,23 +121,9 @@ let selectedEmoji = '';
 
 // 선택된 작업 실행 (표정 설정하기 또는 일기 쓰기)
 function performAction(action) {
-    if (action === "emoji") {
-        // "표정 설정하기" 작업 실행
-        alert("표정 설정하기를 선택하셨습니다.");
-        showEmojiPicker();
-    } else if (action === "diary") {
+    if (action === "diary") {
         // "일기 쓰기" 작업 실행
         alert("일기 쓰기를 선택하셨습니다.");
-    }
-    else if (action === "sticker") {
-        // "스티커 붙이기" 작업 실행
-        alert("스티커 붙이기를 선택하셨습니다.");
-        toggleStickerAndWeatherButtons();
-    }
-    else if (action === "weather") {
-        // "날씨 표시하기" 작업 실행
-        alert("날씨 표시하기를 선택하셨습니다.");
-        showWeatherEmoji();
     }
     // 모달 다이얼로그 닫기
     closeModal();
@@ -167,29 +165,58 @@ function selectEmoji(emoji) {
     const emojiPicker = document.getElementById("emojiPicker");
     emojiPicker.style.display = "none";
 }
-// 선택된 이모지를 특정 날짜에 표시하는 함수
-function displayEmojiOnSelectedDate() {
-    const selectedDate = document.querySelector(".choiceDay");
-    if (selectedDate) {
-        const emojiElement = document.createElement("span");
-        emojiElement.classList.add("emoji");
-        emojiElement.innerHTML = selectedEmoji;
-        selectedDate.appendChild(emojiElement);
+// 초기 버튼 상태 설정 함수
+function setInitialButtonState() {
+    const diaryButton = document.getElementById('diaryButton');
+    const addStickerButton = document.getElementById('addStickerButton');
+    const emojiButton = document.getElementById('emojiButton');
+    const weatherButton = document.getElementById('weatherButton');
+    const delateButton = document.getElementById('delateButton'); // 수정된 부분
+
+   
+        // 스티커 붙이기 버튼을 누르면 "일기 쓰기" 버튼을 숨깁니다.
+        diaryButton.style.display = 'block';
+        addStickerButton.style.display = 'block';
+        delateButton.style.display = 'none';
+        emojiButton.style.display = 'none';
+        weatherButton.style.display = 'none';
     }
-}
+
 // 스티커 및 날씨 버튼을 토글하는 함수
 function toggleStickerAndWeatherButtons() {
-    var stickerButton = document.getElementById('addStickerButton');
-    var emojiButton = document.getElementById('emojiButton');
-    var weatherButton = document.getElementById('weatherButton');
-    var diaryButton = document.getElementById('diaryButton');
-    // 스티커 붙이기 버튼을 누르면 "일기 쓰기" 버튼을 숨깁니다.
-    diaryButton.style.display = 'none';
-    // 숨겨진 버튼들을 토글하여 보이게 하거나 숨깁니다.
-    emojiButton.style.display = 'block';
-    weatherButton.style.display = 'block';
-    stickerButton.style.display = 'none';
+    const stickerButton = document.getElementById('addStickerButton');
+    const emojiButton = document.getElementById('emojiButton');
+    const weatherButton = document.getElementById('weatherButton');
+    const diaryButton = document.getElementById('diaryButton');
+    const delateButton = document.getElementById('delateButton');
+
+    const selectedDate = document.querySelector(".choiceDay");
+    if (selectedDate) {
+        // 날짜 정보 가져오기
+        const year = parseInt(selectedDate.parentNode.getAttribute('data-year'), 10);
+        const month = parseInt(selectedDate.parentNode.getAttribute('data-month'), 10);
+        const day = parseInt(selectedDate.textContent, 10);
+
+        // 스티커 및 날씨 정보를 불러오기
+        const storedEmoji = loadSticker(new Date(year, month, day));
+        const storedWeatherEmoji = loadWeatherEmoji(new Date(year, month, day));
+
+        if (storedEmoji || storedWeatherEmoji) {
+            emojiButton.style.display = 'none';
+            weatherButton.style.display = 'none';
+            delateButton.style.display = 'block';
+        } else {
+            emojiButton.style.display = 'block';
+            weatherButton.style.display = 'block';
+            delateButton.style.display = 'none';
+        }
+        
+        // 스티커 붙이기 버튼을 누르면 "일기 쓰기" 버튼을 숨깁니다.
+        diaryButton.style.display = 'none';
+        stickerButton.style.display = 'none';
+    }
 }
+
 
 // input값이 한자리 숫자인 경우 앞에 '0'을 붙이는 함수
 function leftPad(value) {
@@ -287,6 +314,7 @@ function saveSticker(date, emoji) {
     stickers[dateString] = emoji;
     // 스티커 정보를 로컬 스토리지에 저장
     localStorage.setItem('stickers', JSON.stringify(stickers));
+    buildCalendar();
 }
 
 // 스티커 정보를 불러오는 함수
@@ -299,8 +327,10 @@ function loadSticker(date) {
     
     // 저장된 스티커 정보를 불러옴
     const stickers = loadstoreStickers();
+    
     // 해당 날짜의 스티커 정보 반환
     return stickers[dateString];
+    
 }
 
 // 저장된 스티커 정보를 불러오는 함수
@@ -322,6 +352,9 @@ function displayStickerOnSelectedDate(dateElement, emoji) {
     emojiElement.classList.add("emoji");
     emojiElement.innerHTML = emoji;
     dateElement.appendChild(emojiElement);
+    
+    
+    
 }
 // 날씨 이모지를 저장하는 함수
 function saveWeatherEmoji(date, emoji) {
@@ -337,6 +370,21 @@ function saveWeatherEmoji(date, emoji) {
     weatherEmojis[dateString] = emoji;
     // 날씨 이모지 정보를 로컬 스토리지에 저장
     localStorage.setItem('weatherEmojis', JSON.stringify(weatherEmojis));
+    buildCalendar();
+
+}
+// 날짜에 해당하는 엘리먼트 찾기
+function findDateElement(year, month, day) {
+    const tbody_Calendar = document.querySelector(".Calendar > tbody");
+    const dateElements = tbody_Calendar.querySelectorAll(`[data-year="${year}"][data-month="${month}"] p`);
+    
+    for (const element of dateElements) {
+        if (parseInt(element.innerHTML, 10) === day) {
+            return element;
+        }
+    }
+
+    return null;
 }
 
 // 날씨 이모지 정보를 불러오는 함수
@@ -364,4 +412,57 @@ function loadWeatherEmojis() {
         // 빈 객체 반환
         return {};
     }
+}
+// 선택된 날짜의 데이터 삭제 함수
+function deleteSelectedDateData() {
+    const selectedDate = document.querySelector(".choiceDay");
+    
+    if (selectedDate) {
+        // 날짜 정보 가져오기
+        const year = parseInt(selectedDate.parentNode.getAttribute('data-year'), 10);
+        const month = parseInt(selectedDate.parentNode.getAttribute('data-month'), 10);
+        const day = parseInt(selectedDate.textContent, 10);
+        
+        // 스티커 삭제
+        deleteSticker(new Date(year, month, day));
+        
+        // 날씨 이모지 삭제
+        deleteWeatherEmoji(new Date(year, month, day));
+        // 업데이트된 달력 다시 생성
+        buildCalendar();
+
+        // 모달 다이얼로그 닫기
+        closeModal();
+    }
+}
+function deleteSticker(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dateString = `${year}-${leftPad(month)}-${leftPad(day)}`;
+
+    // 저장된 스티커 정보를 불러옴
+    const stickers = loadstoreStickers();
+    
+    // 해당 날짜의 스티커 정보 삭제
+    delete stickers[dateString];
+
+    // 업데이트된 스티커 정보를 로컬 스토리지에 저장
+    localStorage.setItem('stickers', JSON.stringify(stickers));
+}
+// 날씨 이모지 삭제 함수
+function deleteWeatherEmoji(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dateString = `${year}-${leftPad(month)}-${leftPad(day)}`;
+
+    // 저장된 날씨 이모지 정보를 불러옴
+    const weatherEmojis = loadWeatherEmojis();
+
+    // 해당 날짜의 날씨 이모지 정보 삭제
+    delete weatherEmojis[dateString];
+
+    // 업데이트된 날씨 이모지 정보를 로컬 스토리지에 저장
+    localStorage.setItem('weatherEmojis', JSON.stringify(weatherEmojis));
 }

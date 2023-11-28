@@ -45,7 +45,8 @@
 }        
 
 .pastDay {
-    
+    background-color: #FFFFFF;
+    cursor: pointer;
 }
 
 .today {
@@ -63,6 +64,7 @@
     background:#eee;
 }
 
+.pastDay.choiceDay,
 .futureDay.choiceDay,
 .today.choiceDay {
     background: #0A174E;
@@ -123,7 +125,17 @@
 .choiceDay {
     position: relative;
 }
-
+.storedEmoji{
+    position: relative;
+}
+.storedEmoji .emoji{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 42%; /* 가운데 정렬 */
+    transform: translateX(-50%); /* 가운데 정렬 */
+    font-size: 24px;
+}
 .choiceDay .emoji {
     display: block;
     position: absolute;
@@ -139,7 +151,6 @@
     color: black;
     cursor: pointer;
 }
-
 
 
 
