@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시판</title>
+  <link rel="stylesheet" href="static/css/write.css">
+  <style>
+    .sticker-container {
+      position: relative;
+      display: inline-block;
+      resize: both;
+      overflow: auto;
+      max-width: 100%;
+      max-height: 100%;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+    
+    .sticker {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="write-container">
+    <div id="board_write">
+      <h4>일기을 작성하는 공간입니다.</h4>
+      <form class="write-form" id="writeForm">
+        <div id="write_area">
+          <div id="in_title">
+            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+          </div>
+          <div class="wi_line"></div>
+          <div id="in_content">
+            <textarea name="content" id="ucontent" rows="10" cols="100" placeholder="내용" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="file">파일 선택</label>
+            <input type="file" id="file" name="file">
+          </div>
+          <div id="stickerContainer" class="sticker-container">
+            <!-- 스티커가 들어갈 부분 -->
+          </div>
+          <div class="bt_se">
+            <button type="submit">글 작성</button>
+            <button type="button" id="stickerButton">사진 나타내기</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="static/js/write.js"></script>
+  <script>
+    document.getElementById("stickerButton").addEventListener("click", function() {
+      var fileInput = document.getElementById("file");
+      var stickerContainer = document.getElementById("stickerContainer");
+      
+      if (fileInput.files.length > 0) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          var sticker = document.createElement("img");
+          sticker.classList.add("sticker");
+          sticker.src = e.target.result;
+          stickerContainer.appendChild(sticker);
+        }
+        
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
