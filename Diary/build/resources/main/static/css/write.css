@@ -1,0 +1,25 @@
+body {
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.write-container {
+    width:800px;
+    /* 너비 조정 */
+    padding: 30px;
+    /* 패딩 조정 */
+    border: 2px solid #333;
+    /* 테두리 스타일과 색상 조정 */
+    border-radius: 10px;
+    /* 둥근 모서리 추가 */
+    background-color: #ffffff;
+    /* 흰색 배경색상 추가 */
+}
+
+.write-form {
+    text-align: left;
+}
