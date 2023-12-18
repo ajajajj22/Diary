@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판</title>
+    <link rel="stylesheet" href="/css/write.css" />
+    <style>
+        .resizable-container {
+            position: relative;
+            display: inline-block;
+        }
+        .resizable-container textarea {
+            resize: both;
+            overflow: auto;
+            max-width: 100%;
+            max-height: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="write-container">
+    <div id="board_write">
+        <label for="backgroundColor">배경 색상 선택:</label>
+        <input type="color" id="backgroundColor" name="backgroundColor" onchange="changeBackgroundColor(event)" />
+        <form class="write-form" id="writeForm">
+            <div id="write_area">
+                <div id="in_title">
+            <textarea
+                    name="title"
+                    id="utitle"
+                    rows="1"
+                    cols="110"
+                    placeholder="제목"
+                    maxlength="100"
+                    required
+            ></textarea>
+                </div>
+                <div class="wi_line"></div>
+                <div id="in_content">
+            <textarea
+                    name="content"
+                    id="ucontent"
+                    rows="30"
+                    cols="110"
+                    placeholder="내용"
+                    required
+            ></textarea>
+                </div>
+                <div class="file-input-container">
+                    <input type="file" name="SelectFile" id="imageInput" class="uniform-button" />
+                </div>
+                <div id="stickerContainer"></div>
+
+                <div class="bt_se">
+                    <button type="button" id="stickerButton" class="uniform-button">스티커화</button>
+                    <div class="save-button-container">
+                        <button type="submit" class="uniform-button">저장</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/js/write.js"></script>
+<script src="/js/calendar.js"></script>
+<script src="/js/diary.js"></script>
+<script>
+    // 배경색을 변경하는 함수
+
+</script>
+
+</body>
+</html>

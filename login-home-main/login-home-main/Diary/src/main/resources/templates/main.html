@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>My Diary</title>
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/font.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/calendar.css">
+  <style>
+    body {
+      transition: background-image 0.5s ease-in-out;
+      background-size: cover;
+      /* Add any additional styles for the body element */
+    }
+    .buttons-container button {
+      /* Apply the font-kyobohand class to buttons in the buttons-container */
+      font-family: "kyobohand";
+    }
+  </style>
+</head>
+
+<body>
+<div class="bookcover">
+  <div class="bookdot">
+    <div class="page">
+      <div class="profile-container">
+        <div class="box profile-box">
+          <div class="profile-image">
+            <img class="profile-image-img" id="profileImage" src="/images/cyworld1.png" alt="프로필 이미지" />
+            <input type="file" id="profile-image-input" style="display: none;" accept="image/*">
+          </div>
+          <button id="changeProfileImageButton" style="display: none;">프로필 사진 변경</button>
+          <div class="profile-text font-kyobohand">
+            닉네임
+          </div>
+          <div class="profile-username font-kyobohand">
+            <span style="color: #0f1b5c">자기소개</span>
+          </div>
+          <button id="changeProfileButton">프로필 변경</button>
+        </div>
+      </div>
+      <div class="content-container">
+        <div class="header content-title">
+          <div class="content-title-name profile-diary font-kyobohand">다이어리</div>
+        </div>
+        <div class="buttons-container font-kyobohand">
+          <button onclick="changeBackground('Fondos.jpg')">Day</button>
+          <button onclick="changeBackground('back1.jpg')">Sunset</button>
+
+          <!-- 메인으로 -->
+          <button id="go-to-main" class="profile-text font-kyobohand">MyPage</button>
+          <!-- 로그아웃 -->
+          <button id="log-out" onClick="goTologinPage()" class="profile-text font-kyobohand">로그아웃</button>
+        </div>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>무엇을 하시겠습니까?</p>
+            <button id="diaryButton" onclick="goToWritePage()" class="profile-text font-kyobohand">일기 쓰기</button>
+            <button id="addStickerButton" onclick="toggleStickerAndWeatherButtons()" class="profile-text font-kyobohand">스티커 붙이기</button>
+            <button id="emojiButton" style="display: none;" onclick="showEmojiPicker()" class="profile-text font-kyobohand">표정 설정하기</button>
+            <button id="weatherButton" style="display: none;" onclick="showWeatherEmoji()" class="profile-text font-kyobohand">날씨 표시하기</button>
+            <button id="delateButton" style="display: none;" onclick="deleteSelectedDateData()" class="profile-text font-kyobohand">스티커 삭제하기</button>
+          </div>
+        </div>
+        <!-- 이모지 선택 창 -->
+        <div id="emojiPicker" class="emoji-picker">
+          <div>
+            <span class="emoji" onclick="selectEmoji('😃')">😃</span>
+            <span class="emoji" onclick="selectEmoji('😊')">😊</span>
+            <span class="emoji" onclick="selectEmoji('😂')">😂</span>
+            <span class="emoji" onclick="selectEmoji('😒')">😒</span>
+            <span class="emoji" onclick="selectEmoji('😑')">😑</span>
+            <span class="emoji" onclick="selectEmoji('👍')">👍</span>
+            <span class="emoji" onclick="selectEmoji('🤣')">🤣</span>
+            <span class="emoji" onclick="selectEmoji('😴')">😴</span>
+            <span class="emoji" onclick="selectEmoji('❤️')">❤️</span>
+            <span class="emoji" onclick="selectEmoji('😁')">😁</span>
+            <span class="emoji" onclick="selectEmoji('😃')">😃</span>
+            <span class="emoji" onclick="selectEmoji('😅')">😅</span>
+            <span class="emoji" onclick="selectEmoji('😉')">😉</span>
+            <span class="emoji" onclick="selectEmoji('😋')">😋</span>
+            <span class="emoji" onclick="selectEmoji('😎')">😎</span>
+            <span class="emoji" onclick="selectEmoji('😍')">😍</span>
+            <!-- 다른 이모지 추가 -->
+          </div>
+        </div>
+        <div class="box content-box">
+          <table class="Calendar">
+            <thead>
+            <tr>
+              <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+              <td colspan="5">
+                <span id="calYear" class="profile-text font-kyobohand" style="font-size: 1.5em; margin-right: 15px;"></span>
+                <span id="calMonth" class="profile-text font-kyobohand" style="font-size: 1.5em;"></span>
+              </td>
+              <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+            </tr>
+            <tr>
+              <td class="profile-text font-kyobohand">일</td>
+              <td class="profile-text font-kyobohand">월</td>
+              <td class="profile-text font-kyobohand">화</td>
+              <td class="profile-text font-kyobohand">수</td>
+              <td class="profile-text font-kyobohand">목</td>
+              <td class="profile-text font-kyobohand">금</td>
+              <td class="profile-text font-kyobohand">토</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/calendar.js"></script>
+<script src="/js/profile.js"></script>
+<script src="/js/home.js"></script>
+<script src="/js/changeprofile.js"></script>
+<script>
+  function changeBackground(image) {
+    document.body.style.backgroundImage = `url('/images/${image}')`;
+  }
+</script>
+</body>
+</html> 

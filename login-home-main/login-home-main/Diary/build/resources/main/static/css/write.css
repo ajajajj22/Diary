@@ -1,0 +1,70 @@
+body {
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.write-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width:800px;
+    /* 너비 조정 */
+    padding: 30px;
+    /* 패딩 조정 */
+    /*border: 2px solid #333;*/
+    /* 테두리 스타일과 색상 조정 */
+    border-radius: 10px;
+    /* 둥근 모서리 추가 */
+    background-color: #ffffff;
+    /* 흰색 배경색상 추가 */
+}
+
+#in_title {
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+#utitle {
+    margin: auto;
+    display: block;
+}
+
+#in_content {
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+#ucontent {
+    margin: auto;
+    display: block;
+}
+
+.bt_se {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+textarea{
+    resize: none;
+}
+
+.save-button-container {
+    margin-left: 10px; /* Add margin space between buttons and writing area */
+}
+
+.file-input-container {
+    margin-top: 12px; /* Add margin space between file input and content textarea */
+}
+
+.uniform-button {
+    width: 100px; /* Set a common width for the buttons */
+    height: 30px; /* Set a common height for the buttons */
+}
